@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://harrisfs-web.github.io/ga4-looker-guides/sitemap.xml
