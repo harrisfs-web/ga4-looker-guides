@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Newsletter Signups with GTM</title>
+    <link rel="canonical" href="https://harrisfs-web.github.io/ga4-looker-guides/article-3.html" />
+    <meta name="description" content="How to track newsletter conversions using Google Tag Manager and send events to GA4.">
+    <link rel="stylesheet" href="syles.css">
+    <link rel="stylesheet" href="css/article-styles.css">
+</head>
+<body>
+    <nav id="main-nav"></nav>
+    <header>
+        <h1>Newsletter Tracking Setup</h1>
+        <p>Using Google Tag Manager</p>
+    </header>
+    <main>
+        <article class="article-content">
+            <div class="intro">
+                <p>Track newsletter signups effectively using Google Tag Manager (GTM) and send the data to GA4. This guide covers everything from basic setup to advanced tracking configurations.</p>
+            </div>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div>Setup GTM</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div>Create Tag</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div>Set Trigger</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div>Test & Deploy</div>
+                </div>
+            </div>
+
+            <h2>Step 1: GTM Account Setup</h2>
+            <div class="important-note">
+                <h3>🔑 Prerequisites:</h3>
+                <ul>
+                    <li>Google account with admin access</li>
+                    <li>Website with newsletter form</li>
+                    <li>Basic HTML knowledge</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>GTM Structure:</h4>
+                <pre>
+GTM Account
+├── Container
+│   ├── Tags
+│   │   ├── GA4 Configuration
+│   │   └── Newsletter Event
+│   ├── Triggers
+│   │   └── Form Submit
+│   └── Variables
+        ├── Built-in
+        └── Custom</pre>
+            </div>
+
+            <h2>Step 2: Create Newsletter Tracking Tag</h2>
+            <table class="comparison-table">
+                <tr>
+                    <th>Setting</th>
+                    <th>Value</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td>Tag Type</td>
+                    <td>GA4 Event</td>
+                    <td>Send data to GA4</td>
+                </tr>
+                <tr>
+                    <td>Event Name</td>
+                    <td>newsletter_signup</td>
+                    <td>Track form submissions</td>
+                </tr>
+                <tr>
+                    <td>Parameters</td>
+                    <td>form_id, location</td>
+                    <td>Additional context</td>
+                </tr>
+            </table>
+
+            <div class="code-example">
+                <h4>GA4 Event Tag Configuration:</h4>
+                <pre><code>{
+  "event_name": "newsletter_signup",
+  "parameters": {
+    "form_id": "{{Element ID}}",
+    "page_location": "{{Page URL}}",
+    "user_type": "{{User Type}}",
+    "signup_method": "form_submit"
+  }
+}</code></pre>
+            </div>
+
+            <h2>Step 3: Configure Triggers</h2>
+            <div class="pro-tip">
+                <h3>💡 Trigger Best Practices:</h3>
+                <ul>
+                    <li>Use specific form selectors</li>
+                    <li>Add validation checks</li>
+                    <li>Consider multi-step forms</li>
+                    <li>Handle AJAX submissions</li>
+                </ul>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>Form Submit Listener</h3>
+                <pre><code>// Custom JavaScript Variable
+function() {
+  return {
+    listenToForm: function(formId) {
+      document.getElementById(formId)
+        .addEventListener('submit', function(e) {
+          dataLayer.push({
+            'event': 'newsletter_signup',
+            'form_id': formId,
+            'success': true
+          });
+        });
+    }
+  }
+}</code></pre>
+            </div>
+
+            <h2>Step 4: Testing and Verification</h2>
+            <div class="verification-steps">
+                <h3>📋 Testing Checklist:</h3>
+                <ol>
+                    <li>Enable Preview Mode
+                        <ul>
+                            <li>Check tag firing</li>
+                            <li>Verify parameters</li>
+                            <li>Test different scenarios</li>
+                        </ul>
+                    </li>
+                    <li>Debug Console
+                        <ul>
+                            <li>Monitor dataLayer</li>
+                            <li>Check for errors</li>
+                            <li>Validate data</li>
+                        </ul>
+                    </li>
+                    <li>GA4 DebugView
+                        <ul>
+                            <li>Confirm events</li>
+                            <li>Check parameters</li>
+                            <li>Verify user properties</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="troubleshooting">
+                <h3>🔍 Common Implementation Issues:</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Issue</th>
+                        <th>Cause</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>Tag Not Firing</td>
+                        <td>Wrong trigger setup</td>
+                        <td>Check form selector</td>
+                    </tr>
+                    <tr>
+                        <td>Double Events</td>
+                        <td>Multiple listeners</td>
+                        <td>Use trigger exceptions</td>
+                    </tr>
+                    <tr>
+                        <td>Missing Data</td>
+                        <td>AJAX form submit</td>
+                        <td>Custom event listener</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Advanced Implementation</h2>
+            <div class="example-box">
+                <h4>Enhanced Tracking Code:</h4>
+                <pre><code>// Advanced Form Tracking
+&lt;script&gt;
+document.querySelector('form.newsletter')
+  .addEventListener('submit', function(e) {
+    // Prevent double submissions
+    if (this.submitted) return;
+    this.submitted = true;
+
+    // Validate form
+    if (!validateForm(this)) {
+      e.preventDefault();
+      return;
+    }
+
+    // Push to dataLayer
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      'event': 'newsletter_signup',
+      'form_data': {
+        'location': window.location.pathname,
+        'userId': getUserId(),
+        'timestamp': new Date().toISOString()
+      }
+    });
+  });
+&lt;/script&gt;</code></pre>
+            </div>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div>Validate Input</div>
+                </div>
+                <div class="flow-step">
+                    <div>Process Form</div>
+                </div>
+                <div class="flow-step">
+                    <div>Track Event</div>
+                </div>
+            </div>
+
+            <div class="newsletter-cta">
+                <h3>Want More GTM Tips?</h3>
+                <p>Subscribe for advanced tracking techniques and implementation guides!</p>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <p>&copy; 2025 - Your Website Name. All rights reserved.</p>
+    </footer>
+    <script src="js/nav.js"></script>
+</body>
+</html>

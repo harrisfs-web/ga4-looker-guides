@@ -7,7 +7,7 @@ if (nav) {
         <ul class="navbar">
             <li><a href="index.html">Home</a></li>
             <li><a href="articles.html">Articles</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     `;
 }

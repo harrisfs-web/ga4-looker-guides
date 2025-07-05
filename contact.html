@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GA4 & Looker Studio Guides</title>
+    <link rel="canonical" href="https://harrisfs-web.github.io/ga4-looker-guides/contact.html" />
+    <meta name="description" content="Get in touch with us for GA4 and Looker Studio support, questions, or collaborations.">
+    <link rel="stylesheet" href="syles.css">
+    <link rel="stylesheet" href="css/contact-styles.css">
+</head>
+<body>
+    <nav id="main-nav"></nav>
+    <header>
+        <h1>Contact Us</h1>
+        <p>Get in Touch for Analytics Support</p>
+    </header>
+
+    <main>
+        <div class="contact-grid">
+            <section class="contact-form-section">
+                <h2>Send Us a Message</h2>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a topic...</option>
+                            <option value="ga4">GA4 Support</option>
+                            <option value="looker">Looker Studio Help</option>
+                            <option value="business">Business Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group consent-checkbox">
+                        <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
+                        <label for="privacy-consent">I agree to the privacy policy and consent to data processing</label>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </section>
+
+            <aside class="contact-info">
+                <div class="info-card">
+                    <h3>📧 Email Us</h3>
+                    <p>support@ga4guides.com</p>
+                    <p class="response-time">Typical response time: 24-48 hours</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>🕒 Business Hours</h3>
+                    <p>Monday - Friday</p>
+                    <p>9:00 AM - 5:00 PM (EET)</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>💼 Business Inquiries</h3>
+                    <p>For partnerships and collaborations:</p>
+                    <p>business@ga4guides.com</p>
+                </div>
+
+                <div class="privacy-notice">
+                    <h3>Privacy Notice</h3>
+                    <p>We take your privacy seriously. When you contact us, we collect and process your data in accordance with our privacy policy:</p>
+                    <ul>
+                        <li>Your data is stored securely in the EU</li>
+                        <li>We never share your information with third parties</li>
+                        <li>You can request data deletion at any time</li>
+                        <li>We use data only to respond to your inquiry</li>
+                    </ul>
+                    <a href="#" class="privacy-link">Read our full Privacy Policy</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - GA4 Guides. All rights reserved.</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

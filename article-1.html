@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with GA4: A Simple Setup Guide</title>
+    <link rel="canonical" href="https://harrisfs-web.github.io/ga4-looker-guides/article-1.html" />
+    <meta name="description" content="Learn how to set up Google Analytics 4 for your business in just a few steps.">
+    <link rel="stylesheet" href="syles.css">
+    <link rel="stylesheet" href="css/article-styles.css">
+</head>
+<body>
+    <nav id="main-nav"></nav>
+    <header>
+        <h1>Getting Started with GA4</h1>
+        <p>A Simple Setup Guide</p>
+    </header>
+    <main>
+        <article class="article-content">
+            <div class="intro">
+                <p>Google Analytics 4 (GA4) is the latest version of Google's analytics platform. Unlike Universal Analytics, GA4 is built with a focus on event-based tracking and cross-platform measurement. This guide will help you set up GA4 correctly from the start.</p>
+            </div>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div>Create Account</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div>Set Up Property</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div>Install Code</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div>Verify Data</div>
+                </div>
+            </div>
+
+            <h2>Step 1: Create a Google Analytics Account</h2>
+            <p>Visit <a href="https://analytics.google.com">Google Analytics</a> and sign in with your Google account. Click on "Start Measuring" to create a new account.</p>
+            
+            <div class="important-note">
+                <h3>🔑 Key Points:</h3>
+                <ul>
+                    <li>One Google Analytics account can manage multiple properties</li>
+                    <li>Choose a descriptive account name that represents your organization</li>
+                    <li>You can add multiple users with different permission levels</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>Account Structure Example:</h4>
+                <pre>
+MyCompany (Account)
+├── Website (Property)
+│   ├── Production Data Stream
+│   └── Test Data Stream
+└── Mobile App (Property)
+    ├── iOS Data Stream
+    └── Android Data Stream</pre>
+            </div>
+
+            <h2>Step 2: Set Up a Property</h2>
+            <p>A property in GA4 represents your website, app, or both. Follow these steps to set it up correctly:</p>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Setting</th>
+                    <th>Example</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>Property Name</td>
+                    <td>MyCompany Website</td>
+                    <td>Keep it clear and descriptive</td>
+                </tr>
+                <tr>
+                    <td>Time Zone</td>
+                    <td>UTC+02:00 Athens</td>
+                    <td>Match your primary business location</td>
+                </tr>
+                <tr>
+                    <td>Currency</td>
+                    <td>EUR</td>
+                    <td>Match your primary transaction currency</td>
+                </tr>
+            </table>
+            
+            <div class="pro-tip">
+                <h3>💡 Pro Tip:</h3>
+                <p>Create a test property alongside your production property to safely experiment with new configurations.</p>
+            </div>
+
+            <h2>Step 3: Install the Tracking Code</h2>
+            <p>GA4 uses a different tracking code than Universal Analytics. Here's how to implement it:</p>
+
+            <div class="code-example">
+                <h4>Basic GA4 Installation Code:</h4>
+                <pre><code>&lt;!-- Google tag (gtag.js) --&gt;
+&lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+&lt;/script&gt;</code></pre>
+            </div>
+
+            <div class="example-box">
+                <h4>Enhanced Event Tracking Example:</h4>
+                <pre><code>// Track button clicks
+gtag('event', 'button_click', {
+  'button_text': 'Subscribe',
+  'page_location': '/homepage'
+});
+
+// Track form submissions
+gtag('event', 'form_submit', {
+  'form_name': 'newsletter',
+  'form_success': true
+});</code></pre>
+            </div>
+
+            <h2>Step 4: Verify Data Collection</h2>
+            <div class="verification-steps">
+                <h3>📋 Verification Checklist:</h3>
+                <ol>
+                    <li>Open the Realtime report in GA4</li>
+                    <li>Visit your website in a new tab</li>
+                    <li>Check if your visit appears in the Realtime report</li>
+                    <li>Verify these key parameters:
+                        <ul>
+                            <li>Page views</li>
+                            <li>User location</li>
+                            <li>Device information</li>
+                            <li>Traffic source</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="troubleshooting">
+                <h3>🔍 Common Issues and Solutions:</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Issue</th>
+                        <th>Possible Cause</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>No Data Showing</td>
+                        <td>Code not installed properly</td>
+                        <td>Verify code placement in &lt;head&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>Missing Parameters</td>
+                        <td>Incorrect configuration</td>
+                        <td>Check measurement ID format</td>
+                    </tr>
+                    <tr>
+                        <td>Duplicate Events</td>
+                        <td>Multiple tracking codes</td>
+                        <td>Remove duplicate installations</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>Debug Console Tool</h3>
+                <p>Copy and paste this code in your browser's console to check GA4 installation:</p>
+                <pre><code>function checkGA4() {
+  if (typeof gtag === 'function') {
+    console.log('✅ GA4 is installed');
+    return true;
+  }
+  console.log('❌ GA4 is not installed');
+  return false;
+}</code></pre>
+            </div>
+
+            <h2>Next Steps and Best Practices</h2>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div>Set Up Events</div>
+                </div>
+                <div class="flow-step">
+                    <div>Configure Goals</div>
+                </div>
+                <div class="flow-step">
+                    <div>Create Reports</div>
+                </div>
+            </div>
+
+            <div class="newsletter-cta">
+                <h3>Want More GA4 Tips?</h3>
+                <p>Subscribe to our newsletter for weekly insights and updates!</p>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <p>&copy; 2025 - Your Website Name. All rights reserved.</p>
+    </footer>
+    <script src="js/nav.js"></script>
+</body>
+</html>

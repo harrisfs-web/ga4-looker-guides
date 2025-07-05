@@ -47,19 +47,38 @@
     </header>
 
     <main>
-        <article>
+        <div class="welcome-section">
             <h2>Welcome to Our Guide!</h2>
             <p>Here you will find simple, step-by-step guides to help you understand your sales data, customer behavior, and advertising performance using Google Analytics 4 and Looker Studio.</p>
-            </article>
+        </div>
 
-        <section id="newsletter-signup">
-            <h3>Get Easy Data Insights & GA4 Tips</h3>
-            <p>Subscribe to our newsletter and get the best tips delivered to your inbox.</p>
-            <form>
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </section>
+        <div class="content-grid">
+            <section class="articles-list">
+                <article class="article-card">
+                    <h2><a href="article-1.html">Getting Started with GA4: A Simple Setup Guide</a></h2>
+                    <p>Learn how to set up Google Analytics 4 for your business in just a few steps.</p>
+                </article>
+                <article class="article-card">
+                    <h2><a href="article-2.html">Looker Studio Basics: Your First Dashboard</a></h2>
+                    <p>Step-by-step instructions to create your first Looker Studio dashboard and connect GA4 data.</p>
+                </article>
+                <article class="article-card">
+                    <h2><a href="article-3.html">Tracking Newsletter Signups with GTM</a></h2>
+                    <p>Learn how to implement newsletter tracking using Google Tag Manager and GA4 events.</p>
+                </article>
+            </section>
+
+            <aside id="newsletter-signup">
+                <div class="newsletter-text">
+                    <h3>Get Easy Data Insights & GA4 Tips</h3>
+                    <p>Subscribe to our newsletter and get the best tips delivered to your inbox.</p>
+                </div>
+                <form>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </aside>
+        </div>
     </main>
 
     <footer>

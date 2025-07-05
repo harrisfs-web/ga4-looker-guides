@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looker Studio Basics: Your First Dashboard</title>
+    <link rel="canonical" href="https://harrisfs-web.github.io/ga4-looker-guides/article-2.html" />
+    <meta name="description" content="Step-by-step instructions to create your first Looker Studio dashboard and connect GA4 data.">
+    <link rel="stylesheet" href="syles.css">
+    <link rel="stylesheet" href="css/article-styles.css">
+</head>
+<body>
+    <nav id="main-nav"></nav>
+    <header>
+        <h1>Looker Studio Basics</h1>
+        <p>Your First Dashboard</p>
+    </header>
+    <main>
+        <article class="article-content">
+            <div class="intro">
+                <p>Looker Studio turns your GA4 data into beautiful, informative dashboards. This guide will walk you through creating your first professional dashboard, from connection to customization.</p>
+            </div>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div>Connect Data</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div>Choose Metrics</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div>Build Charts</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div>Share Report</div>
+                </div>
+            </div>
+
+            <h2>Step 1: Connect Your GA4 Data</h2>
+            <div class="important-note">
+                <h3>🔑 Prerequisites:</h3>
+                <ul>
+                    <li>Active GA4 property</li>
+                    <li>Editor access to GA4</li>
+                    <li>Google account with Looker Studio access</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>Data Connection Structure:</h4>
+                <pre>
+Looker Studio Report
+├── Data Source (GA4)
+│   ├── Dimensions
+│   │   ├── User Properties
+│   │   └── Event Parameters
+│   └── Metrics
+│       ├── Default Metrics
+│       └── Custom Metrics
+└── Report Settings
+    ├── Theme
+    └── Layout</pre>
+            </div>
+
+            <h2>Step 2: Essential Metrics Selection</h2>
+            <table class="comparison-table">
+                <tr>
+                    <th>Metric Type</th>
+                    <th>Examples</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td>User Engagement</td>
+                    <td>Active Users, Session Duration</td>
+                    <td>Understanding user behavior</td>
+                </tr>
+                <tr>
+                    <td>Acquisition</td>
+                    <td>Traffic Source, Campaign</td>
+                    <td>Marketing effectiveness</td>
+                </tr>
+                <tr>
+                    <td>Conversion</td>
+                    <td>Conversion Rate, Revenue</td>
+                    <td>Business performance</td>
+                </tr>
+            </table>
+
+            <div class="code-example">
+                <h4>Custom Metric Formula Example:</h4>
+                <pre><code>// Revenue per User
+SUM(revenue) / COUNT(DISTINCT user_id)
+
+// Engagement Rate
+engaged_sessions / total_sessions * 100
+
+// Custom Score
+CASE
+  WHEN session_duration > 180 THEN 3
+  WHEN session_duration > 60 THEN 2
+  ELSE 1
+END</code></pre>
+            </div>
+
+            <h2>Step 3: Create Effective Visualizations</h2>
+            <div class="pro-tip">
+                <h3>💡 Chart Selection Guide:</h3>
+                <ul>
+                    <li>Time Series → Line charts</li>
+                    <li>Comparisons → Bar charts</li>
+                    <li>Distributions → Pie charts</li>
+                    <li>Relationships → Scatter plots</li>
+                </ul>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>Sample Chart Configuration</h3>
+                <pre><code>{
+
+  "chart": {
+    "type": "time-series",
+    "metrics": ["active_users", "new_users"],
+    "dimension": "date",
+    "filters": {
+      "country": "Greece",
+      "device": "mobile"
+    }
+  }
+}</code></pre>
+            </div>
+
+            <h2>Step 4: Dashboard Organization</h2>
+            <div class="verification-steps">
+                <h3>📋 Dashboard Structure:</h3>
+                <ol>
+                    <li>Overview Section
+                        <ul>
+                            <li>Key performance indicators</li>
+                            <li>Time comparison</li>
+                            <li>Top-level metrics</li>
+                        </ul>
+                    </li>
+                    <li>User Analysis
+                        <ul>
+                            <li>Demographics</li>
+                            <li>Behavior patterns</li>
+                            <li>Device usage</li>
+                        </ul>
+                    </li>
+                    <li>Conversion Tracking
+                        <ul>
+                            <li>Goal completion</li>
+                            <li>Revenue metrics</li>
+                            <li>User journey</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="troubleshooting">
+                <h3>🔍 Common Dashboard Issues:</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Issue</th>
+                        <th>Cause</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>Slow Loading</td>
+                        <td>Too many widgets</td>
+                        <td>Use date range limits</td>
+                    </tr>
+                    <tr>
+                        <td>Missing Data</td>
+                        <td>Sampling issues</td>
+                        <td>Adjust date ranges</td>
+                    </tr>
+                    <tr>
+                        <td>Incorrect Metrics</td>
+                        <td>Wrong configuration</td>
+                        <td>Verify metric setup</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Advanced Features</h2>
+            <div class="example-box">
+                <h4>Custom Functions:</h4>
+                <pre><code>// Advanced Segments
+CASE
+  WHEN session_duration > 1800 THEN "Engaged Users"
+  WHEN session_duration > 60 THEN "Browsers"
+  ELSE "Bounced"
+END
+
+// Custom Calculations
+ROUND(SUM(revenue) / COUNT_DISTINCT(user_id), 2)</code></pre>
+            </div>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div>Configure Filters</div>
+                </div>
+                <div class="flow-step">
+                    <div>Add Controls</div>
+                </div>
+                <div class="flow-step">
+                    <div>Set Sharing</div>
+                </div>
+            </div>
+
+            <div class="newsletter-cta">
+                <h3>Want More Looker Studio Tips?</h3>
+                <p>Subscribe for advanced dashboard techniques and templates!</p>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <p>&copy; 2025 - Your Website Name. All rights reserved.</p>
+    </footer>
+    <script src="js/nav.js"></script>
+</body>
+</html>
